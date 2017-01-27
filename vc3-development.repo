@@ -1,0 +1,7 @@
+[racf-grid-development]
+name=VC3 Project External $releasever - $basearch
+failovermethod=priority
+baseurl=http://dev.racf.bnl.gov/yum/vc3/development/rhel/$releasever/$basearch
+enabled=0
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-vc3.asc
