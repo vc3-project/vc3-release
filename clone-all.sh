@@ -10,7 +10,7 @@ cd $gitdir
 vc3root="https://github.com/vc3-project"
 sdccroot="https://github.com/bnl-sdcc"
 sdccprojects="plugin-manager"
-vc3projects="pluginmanager credible vc3-info-service vc3-master vc3-core vc3-resource-tool"
+vc3projects="pluginmanager credible vc3-info-service vc3-master vc3-core vc3-resource-tool vc3-client"
 
 
 for p in $sdccprojects  ; do  
