@@ -18,7 +18,7 @@ vc3root="https://github.com/vc3-project"
 sdccroot="https://github.com/bnl-sdcc"
 
 for p in $sdccprojects  ; do
-    if [ -d "p" ] ; then
+    if [ -d "$p" ] ; then
         echo "$gitdir/$p already exists. Pulling..."
         cd $p
         git pull
@@ -31,7 +31,7 @@ for p in $sdccprojects  ; do
 done
 
 for p in $vc3projects  ; do
-    if [ -d "p" ] ; then
+    if [ -d "$p" ] ; then
         echo "$gitdir/$p already exists. Pulling..."
         cd $p
         git pull
