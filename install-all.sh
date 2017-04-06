@@ -4,7 +4,7 @@
 #
 gitdir=~/git
 
-projects="plugin-manager credible vc3-info-service vc3-client vc3-master vc3-core"
+projects="plugin-manager credible vc3-info-service vc3-client vc3-master vc3-core vc3-resource-tool"
 for p in $projects; do
     echo $p
     if [ ! -d "$gitdir/$p" ] ; then
