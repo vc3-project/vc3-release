@@ -40,4 +40,6 @@ for p in $vc3projects  ; do
         repo="${vc3root}/${p}.git"
         echo $repo
         git clone $repo
+    fi
 done
+
