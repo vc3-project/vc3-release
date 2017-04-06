@@ -18,3 +18,5 @@ for p in $projects; do
     echo "done."
 done
 
+~/bin/credible -c ~/git/credible/etc/credible.conf hostcert localhost
+~/bin/credible -c ~/git/credible/etc/credible.conf certchain
