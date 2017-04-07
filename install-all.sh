@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Setup development environment. Creates hostcert, admin cert, and copies them to builer locations. 
+# Setup development environment. Creates hostcert, admin cert, and copies them to builder locations. 
 #
 gitdir=~/git
 
