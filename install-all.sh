@@ -27,4 +27,4 @@ srvroot=~/vc3-services/etc/certs
 
 mkdir -p $srvroot/private
 cp $credroot/certs/localhost.cert.pem $credroot/certs/ca-chain.cert.pem $credroot/certs/VC3Admin.cert.pem $srvroot/
-cp $credroot/private/locahost.keynopw.pem $credroot/private/VC3Admin.keynopw.pem $srvroot/private/
+cp $credroot/private/localhost.keynopw.pem $credroot/private/VC3Admin.keynopw.pem $srvroot/private/
