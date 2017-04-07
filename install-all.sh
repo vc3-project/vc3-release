@@ -25,6 +25,6 @@ srvroot=~/vc3-services/etc/certs
 ~/bin/credible -c ~/git/credible/etc/credible.conf certchain
 ~/bin/credible -c ~/git/credible/etc/credible.conf usercert VC3Admin
 
-mkdir -P $srvroot/private
+mkdir -p $srvroot/private
 cp $credroot/certs/localhost.cert.pem $credroot/certs/ca-chain.cert.pem $credroot/certs/VC3Admin.cert.pem $srvroot/
 cp $credroot/private/locahost.keynopw.pem $credroot/private/VC3Admin.keynopw.pem $srvroot/private/
