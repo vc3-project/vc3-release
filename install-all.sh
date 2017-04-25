@@ -28,3 +28,18 @@ srvroot=~/vc3-services/etc/certs
 mkdir -p $srvroot/private
 cp $credroot/certs/localhost.cert.pem $credroot/certs/ca-chain.cert.pem $credroot/certs/VC3Admin.cert.pem $srvroot/
 cp $credroot/private/localhost.keynopw.pem $credroot/private/VC3Admin.keynopw.pem $srvroot/private/
+
+echo "Done."
+echo ""
+echo "To run infoservice..."
+echo " ~/bin/vc3-info-service -d --conf ~/git/vc3-info-service/etc/vc3-infoservice.conf "
+echo ""
+echo "To run master..."
+echo "vc3-master --conf ~/git/vc3-master/etc/vc3-master.conf -d "
+echo ""
+echo "To create a doc..."
+echo "~/bin/vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf --add ~/git/vc3-info-service/test/account.json"
+echo ""
+echo "To retrieve a doc..."
+echo "~/bin/vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf --getkey=account "
+
