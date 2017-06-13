@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #
 # Setup development environment. Creates hostcert, admin cert, and copies them to builder locations. 
 #
