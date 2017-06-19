@@ -15,7 +15,12 @@ for p in $projects; do
     cd $gitdir/$p
     echo "python setup.py install --home=~/"
     python setup.py install --home=~/
-    echo "done."
+    if [ $? -ne 0 ]; then
+      echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
+      sleep 5
+    else
+      echo "done."
+    fi
 done
 
 credroot=~/var/credible/ssca/defaultca/intermediate/
