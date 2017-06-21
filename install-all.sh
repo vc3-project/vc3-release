@@ -13,11 +13,13 @@ for p in $projects; do
         exit 1
     fi
     cd $gitdir/$p
+    echo "rm -rf build"
+    rm -rf build
     echo "python setup.py install --home=~/"
     python setup.py install --home=~/
     if [ $? -ne 0 ]; then
       echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
-      sleep 5
+      sleep 2
     else
       echo "done."
     fi
