@@ -4,8 +4,10 @@
 #
 gitdir=~/git
 
-projects="pluginmanager credible vc3-info-service vc3-client vc3-master vc3-core vc3-resource-tool vc3-builder"
-for p in $projects; do
+pyprojects="pluginmanager credible vc3-info-service vc3-client vc3-master vc3-core vc3-resource-tool"
+makeprojects="vc3-builder"
+
+for p in $pyprojects; do
     echo $p
     if [ ! -d "$gitdir/$p" ] ; then
         echo "$gitdir/$p does not exist."
@@ -13,8 +15,8 @@ for p in $projects; do
         exit 1
     fi
     cd $gitdir/$p
-    echo "rm -rf build"
-    rm -rf build
+    #echo "rm -rf build"
+    #rm -rf build
     echo "python setup.py install --home=~/"
     python setup.py install --home=~/
     if [ $? -ne 0 ]; then
@@ -24,6 +26,26 @@ for p in $projects; do
       echo "done."
     fi
 done
+
+for p in $makeprojects; do
+    echo $p
+    if [ ! -d "$gitdir/$p" ] ; then
+        echo "$gitdir/$p does not exist."
+        echo "Please clone project $p"
+        exit 1
+    fi
+    cd $gitdir/$p
+    echo "make all "
+    make all 
+    if [ $? -ne 0 ]; then
+      echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
+      sleep 2
+    else
+      echo "done."
+    fi
+
+done
+
 
 credroot=~/var/credible/ssca/defaultca/intermediate/
 srvroot=~/vc3-services/etc/certs
