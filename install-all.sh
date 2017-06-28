@@ -5,7 +5,7 @@
 gitdir=~/git
 
 
-pyprojects="pluginmanager credible vc3-info-service vc3-client vc3-master vc3-core vc3-resource-tool"
+pyprojects="pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool"
 makeprojects="vc3-builder"
 
 for p in $pyprojects; do
