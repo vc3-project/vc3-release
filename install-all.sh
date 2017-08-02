@@ -19,7 +19,7 @@ for p in $pyprojects; do
     #echo "rm -rf build"
     #rm -rf build
     echo "python setup.py install --home=$destdir"
-    python setup.py install --home=$destdir && mkdir -p $destdir/etc && cp etc/*.conf $destdir/etc
+    python setup.py install --home=$destdir && mkdir -p $destdir/etc && cp etc/*.conf etc/*.conf.sample etc/*.template  $destdir/etc
     if [ $? -ne 0 ]; then
       echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
       sleep 2
