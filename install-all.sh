@@ -3,6 +3,7 @@
 # Setup development environment. Creates hostcert, admin cert, and copies them to builder locations. 
 #
 gitdir=~/git
+destdir=~/
 
 pyprojects="pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers"
 makeprojects="vc3-builder"
@@ -17,8 +18,8 @@ for p in $pyprojects; do
     cd $gitdir/$p
     #echo "rm -rf build"
     #rm -rf build
-    echo "python setup.py install --home=~/"
-    python setup.py install --home=~/
+    echo "python setup.py install --home=$destdir"
+    python setup.py install --home=$destdir && mkdir -p $destdir/etc && cp etc/*.conf etc/*.conf.sample etc/*.template  $destdir/etc
     if [ $? -ne 0 ]; then
       echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
       sleep 2

@@ -5,7 +5,8 @@
 
 #   PROJECT LISTS, EDIT THESE
 sdccprojects="pluginmanager"
-vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client vc3-builder vc3-wrappers"
+vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers"
+
 
 # 
 #    EDITTING BELOW SHOULD NOT BE NEEDED
