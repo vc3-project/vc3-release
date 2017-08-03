@@ -9,7 +9,7 @@ python get-pip.py
 
 #   PROJECT LISTS, EDIT THESE
 vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client vc3-builder vc3-wrappers"
-sdccprojects="pluginmanager"
+sdccprojects="sdcc-pluginmanager"
 
 vc3root="git+https://github.com/vc3-project"
 sdccroot="git+https://github.com/bnl-sdcc"
