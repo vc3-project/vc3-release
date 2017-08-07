@@ -62,7 +62,7 @@ cp $credroot/private/localhost.keynopw.pem $credroot/private/VC3Admin.keynopw.pe
 echo "Done."
 echo ""
 echo "To run infoservice..."
-echo "vc3-info-service -d --conf ~/git/vc3-info-service/etc/vc3-infoservice.conf "
+echo "vc3-infoservice -d --conf ~/git/vc3-info-service/etc/vc3-infoservice.conf "
 echo ""
 echo "To run master..."
 echo "vc3-master --conf ~/git/vc3-master/etc/vc3-master.conf -d "
