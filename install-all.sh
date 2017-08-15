@@ -5,7 +5,7 @@
 gitdir=~/git
 destdir=~/
 
-pyprojects="sdcc-pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers"
+pyprojects="sdcc-pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers vc3-factory-plugins"
 makeprojects="vc3-builder"
 
 for p in $pyprojects; do
@@ -47,6 +47,26 @@ for p in $makeprojects; do
 
 done
 
+p="autopyfactory"
+echo $p
+if [ ! -d "$gitdir/$p" ] ; then
+    echo "$gitdir/$p does not exist."
+    echo "Please clone project $p"
+    exit 1
+fi
+cd $gitdir/$p
+echo "python setup.py install --home=$destdir"
+python setup.py install --home=$destdir 
+if [ $? -ne 0 ]; then
+  echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
+  sleep 2
+else
+  echo "done."
+fi
+
+
+
+
 
 credroot=~/var/credible/ssca/defaultca/intermediate/
 srvroot=~/vc3-services/etc/certs
@@ -67,9 +87,14 @@ echo ""
 echo "To run master..."
 echo "vc3-master --conf ~/git/vc3-master/etc/vc3-master.conf -d "
 echo ""
+echo "To run factory..."
+echo "autopyfactory --conf ~/git/vc3-factory-plugins/etc/autopyfactory-vc3config.conf --debug --sleep=30 --log=~/var/autopyfactory.log"
+echo ""
 echo "To create a doc..."
 echo "vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf --add ~/git/vc3-info-service/test/account.json"
 echo ""
 echo "To retrieve a doc..."
 echo "vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf --getkey=user "
+
+
 

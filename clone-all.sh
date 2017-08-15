@@ -5,7 +5,7 @@
 
 #   PROJECT LISTS, EDIT THESE
 sdccprojects="sdcc-pluginmanager"
-vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers"
+vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers vc3-factory-plugins"
 
 
 # 
@@ -42,4 +42,17 @@ for p in $vc3projects  ; do
         git clone $repo
     fi
 done
+
+p="autopyfactory"
+if [ -d "$p" ] ; then
+    echo "$gitdir/$p already exists. Pulling..."
+    cd $p
+    git pull
+    cd ..
+else
+    repo="https://github.com/PanDAWMS/autopyfactory.git"
+    echo $repo
+    git clone $repo
+fi
+
 
