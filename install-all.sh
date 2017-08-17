@@ -8,6 +8,20 @@ destdir=~/
 pyprojects="sdcc-pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers vc3-factory-plugins"
 makeprojects="vc3-builder"
 
+f_copyconf() {
+    DEST=$1
+    mkdir -p $DEST/etc 
+    if ls etc/*.conf* > /dev/null 2>&1; then
+        echo "Copying conf files to $DEST" 
+        cp etc/*.conf* $DEST/etc
+    fi
+    if ls etc/*.template > /dev/null 2>&1; then
+        echo "Copying conf files to $DEST" 
+        cp etc/*.template $DEST/etc
+    fi    
+}
+
+
 for p in $pyprojects; do
     echo $p
     if [ ! -d "$gitdir/$p" ] ; then
@@ -19,7 +33,8 @@ for p in $pyprojects; do
     #echo "rm -rf build"
     #rm -rf build
     echo "python setup.py install --home=$destdir"
-    python setup.py install --home=$destdir && mkdir -p $destdir/etc && cp etc/*.conf etc/*.conf.sample etc/*.template  $destdir/etc
+    python setup.py install --home=$destdir 
+    f_copyconf $destdir 
     if [ $? -ne 0 ]; then
       echo -e "\e[41mERROR: Something went wrong in $p\e[49m"
       sleep 2
@@ -65,9 +80,6 @@ else
 fi
 
 
-
-
-
 credroot=~/var/credible/ssca/defaultca/intermediate/
 srvroot=~/vc3-services/etc/certs
 
@@ -95,6 +107,8 @@ echo "vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf -
 echo ""
 echo "To retrieve a doc..."
 echo "vc3-info-client -d --conf ~/git/vc3-info-service/etc/vc3-infoclient.conf --getkey=user "
-
+echo ""
+echo "To see client commands..."
+echo "vc3-client --conf ~/git/vc3-client/etc/vc3-client.conf --help "
 
 
