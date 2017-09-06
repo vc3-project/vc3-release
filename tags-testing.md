@@ -15,3 +15,5 @@ vc3-project/vc3-info-service,201709061834
 bnl-sdcc/sdcc-pluginmanager,201709061846
 
 pandawms/autopyfactory,201709061644
+
+vc3-project/credible,201709061834
