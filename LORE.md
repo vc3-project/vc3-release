@@ -5,3 +5,5 @@
   4. red and blue cannot be purple 
   5. a bird in the hand worth n in the cloud
   6. to keep things updated, never upgrade anything!
+  7. you cannot know how to do something until you have done it
+  8. solve problems with cardinality rather than complexity 
