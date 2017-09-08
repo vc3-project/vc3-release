@@ -93,7 +93,7 @@ credible -c /etc/credible/credible.conf certchain > /etc/pki/ca-trust/extracted/
 
 ----
 
-# Infoservice
+# VC3 Infoservice
 ## Prerequisites
 As with the Master, you will need to install the VC3 repo and any public keys. 
 
