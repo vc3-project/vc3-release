@@ -1,5 +1,25 @@
 VC3 Deployment Instructions
--------------
+===========
+
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Adding keys](#)
+- [Installing the repos](#)
+- [Bootstrapping authentication on the Master](#)
+	- [Installing Credible and setting up certificates](#)
+	- [Issueing certificates](#)
+- [Infoservice](#)
+	- [Prerequisites](#)
+	- [Installing the Infoservice](#)
+	- [Starting the Infoservice](#)
+- [VC3 Master](#)
+	- [Installing the Master](#)
+	- [Launching the Master](#)
+- [VC3 Factory](#)
+	- [Prerequisites](#)
+	- [Installing the Factory](#)
+	- [Installing the Builder](#)
+	- [Starting the Factory and Condor](#)
 
 # Adding keys
 
