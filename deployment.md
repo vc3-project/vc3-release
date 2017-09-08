@@ -1,6 +1,7 @@
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+VC3 Deployment Instructions
+-------------
 
-	- [VC3 Deployment Instructions](#)
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 - [Adding keys](#)
 - [Installing the repos](#)
 - [Bootstrapping authentication on the Master](#)
@@ -16,9 +17,6 @@
 - [VC3 Factory](#)
 	- [Prerequisites](#)
 	- [Installing the Factory](#)
-
-VC3 Deployment Instructions
--------------
 
 # Adding keys
 
