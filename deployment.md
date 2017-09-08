@@ -8,7 +8,7 @@ VC3 Deployment Instructions
 - [Bootstrapping authentication on the Master](#)
 	- [Installing Credible and setting up certificates](#)
 	- [Issueing certificates](#)
-- [Infoservice](#)
+- [VC3 Infoservice](#)
 	- [Prerequisites](#)
 	- [Installing the Infoservice](#)
 	- [Starting the Infoservice](#)
