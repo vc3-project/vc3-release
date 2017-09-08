@@ -1,23 +1,6 @@
 VC3 Deployment Instructions
 -------------
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
-- [Adding keys](#)
-- [Installing the repos](#)
-- [Bootstrapping authentication on the Master](#)
-	- [Installing Credible and setting up certificates](#)
-	- [Issueing certificates](#)
-- [Infoservice](#)
-	- [Prerequisites](#)
-	- [Installing the Infoservice](#)
-	- [Starting the Infoservice](#)
-- [VC3 Master](#)
-	- [Installing the Master](#)
-	- [Launching the Master](#)
-- [VC3 Factory](#)
-	- [Prerequisites](#)
-	- [Installing the Factory](#)
-
 # Adding keys
 
 When a piece of static infrastructure is initialized on OpenStack or AWS, it will only contain *your* public key at first. You'll need to add the public keys for other developers as well.
@@ -103,7 +86,7 @@ yum install vc3-infoservice pluginmanager python-pip openssl -y
 pip install pyOpenSSL cherrypy
 ```
 
-And edit config at {/etc/vc3/vc3-infoservice.conf}:
+And edit config at `/etc/vc3/vc3-infoservice.conf`:
 ```
 [DEFAULT]
 loglevel = debug
@@ -176,7 +159,6 @@ credconf=/etc/credible/credible.conf
 [dynamic]
 plugin=Execute
 
-
 [netcomm]
 chainfile=/etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
 certfile=/etc/pki/tls/certs/hostcert.pem
@@ -190,12 +172,26 @@ httpsport=20334
 whitelist = cctools-catalog-server,vc3-factory
 ```
 
+You will also need to modify the client config at `/etc/vc3/vc3-client.conf`:
+```
+[DEFAULT]
+logLevel = warn
+
+[netcomm]
+chainfile=/etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
+certfile=/etc/pki/tls/certs/hostcert.pem
+keyfile=/etc/pki/tls/private/hostkey.pem
+
+infohost=info-test.virtualclusters.org
+httpport=20333
+httpsport=20334
+```
 
 ## Launching the Master 
 
 Once the Infoservce has been started, you can start the VC3 Master to process requests. Make sure that the `infohost=` is pointed to the correct hostname in `/etc/vc3/vc3/master.conf`.
 
-It may be necessary to create the vc3 log directory (_see CORE-140_):
+It may be necessary to create the vc3 log directory (_see CORE-140_) and change permissions on the Credible directory (_see CORE-144_):
 ```
 mkdir -p /var/log/vc3
 chown vc3: /var/log/vc3
@@ -234,16 +230,83 @@ As with the master and infoservice, you'll need the VC3 repo installed and publi
 
 In addition to the factory itself, you'll need to install VC3-specific plugins, the infoservice and client for APIs, and the pluginmanager. 
 ```
-yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager 
+yum install epel-release -y 
+yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager -y
+```
+
+We will also need the HTCondor software. Install the public key, repo, and condor package:
+```
+rpm --import http://research.cs.wisc.edu/htcondor/yum/RPM-GPG-KEY-HTCondor
+curl http://research.cs.wisc.edu/htcondor/yum/repo.d/htcondor-stable-rhel7.repo > /etc/yum.repos.d/htcondor-stable-rhel7.repo
+yum install condor
 ```
 
 As before, we will need certificates issued to the Factory host:
 
 ```
-(master)# credible -c /etc/credible/credible.conf hostcert info-test.virtualclusters.org
+(master)# credible -c /etc/credible/credible.conf hostcert apf-test.virtualclusters.org
 (factory)# vi /etc/pki/tls/certs/hostcert.pem
-(master)# credible -c /etc/credible/credible.conf hostkey info-test.virtualclusters.org
+(master)# credible -c /etc/credible/credible.conf hostkey apf-test.virtualclusters.org
 (factory)# vi /etc/pki/tls/private/hostkey.pem
 (master)# credible -c /etc/credible/credible.conf certchain
-(factory)# /etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
+(factory)# vi /etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
 ```
+
+The client will need to be configured to point at the test infoservice in `/etc/vc3/vc3-client.conf`:
+```
+[DEFAULT]
+logLevel = warn
+
+[netcomm]
+chainfile=/etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
+certfile=/etc/pki/tls/certs/hostcert.pem
+keyfile=/etc/pki/tls/private/hostkey.pem
+
+infohost=info-test.virtualclusters.org
+httpport=20333
+httpsport=20334
+```
+
+The factory defaults for VC3, in `/etc/autopyfactory/vc3defaults.conf`, may need to be adjusted as follows:
+```
+[DEFAULT]
+vo = VC3
+status = online
+override = True
+enabled = True
+cleanlogs.keepdays = 7
+batchstatusplugin = Condor
+wmsstatusplugin = None
+schedplugin = KeepNRunning, MinPerCycle, MaxPerCycle, MaxPending
+sched.maxtorun.maximum = 9999
+sched.maxpending.maximum = 100
+sched.maxpercycle.maximum = 50
+sched.minpercycle.minimum = 0
+sched.keepnrunning.keep_running = 0
+monitorsection = dummy-monitor
+builder = /usr/local/libexec/vc3-builder
+
+periodic_remove = periodic_remove=(JobStatus == 5 && (CurrentTime - EnteredCurrentStatus) > 3600) || (JobStatus == 1 && globusstatus =!= 1 && (CurrentTime - EnteredCurrentStatus) > 86400) || (JobStatus == 2 && (CurrentTime - EnteredCurrentStatus) > 604800)
+
+batchsubmit.condorosgce.proxy = None
+batchsubmit.condorec2.proxy = None
+batchsubmit.condorec2.peaceful = True
+batchsubmit.condorlocal.proxy = None
+batchsubmit.condorssh.killorder = newest
+batchsubmit.condorssh.peaceful = False
+
+apfqueue.sleep = 60
+batchstatus.condor.sleep = 25
+```
+
+## Installing the Builder
+
+The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory.
+
+```
+curl http://build.virtualclusters.org/repo/builder/201709061834/vc3-builder > /usr/local/libexec/vc3-builder
+```
+
+## Starting the Factory and Condor
+```
+
