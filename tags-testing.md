@@ -2,9 +2,9 @@
 
 vc3-project/vc3-builder,201709061834
 
-vc3-project/vc3-factory-plugins,201709061834
+vc3-project/vc3-factory-plugins,201709111850
 
-vc3-project/vc3-master,201709061834
+vc3-project/vc3-master,201709111850
 
 vc3-project/vc3-glidein,201709061834
 
