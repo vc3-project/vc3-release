@@ -1,25 +1,25 @@
 VC3 Deployment Instructions
 ===========
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+**Table of Contents**
 
-- [Adding keys](#)
-- [Installing the repos](#)
-- [Bootstrapping authentication on the Master](#)
-	- [Installing Credible and setting up certificates](#)
-	- [Issueing certificates](#)
-- [VC3 Infoservice](#)
-	- [Prerequisites](#)
-	- [Installing the Infoservice](#)
-	- [Starting the Infoservice](#)
-- [VC3 Master](#)
-	- [Installing the Master](#)
-	- [Launching the Master](#)
-- [VC3 Factory](#)
-	- [Prerequisites](#)
-	- [Installing the Factory](#)
-	- [Installing the Builder](#)
-	- [Starting the Factory and Condor](#)
+- [Adding keys](#adding-keys)
+- [Installing the repos](#installing-the-repos)
+- [Bootstrapping authentication on the Master](#bootstrapping-authentication-on-the-master)
+  * [Installing Credible and setting up certificates](#installing-credible-and-setting-up-certificates)
+  * [Issueing certificates](#issueing-certificates)
+- [VC3 Infoservice](#vc3-infoservice)
+  * [Prerequisites](#prerequisites)
+  * [Installing the Infoservice](#installing-the-infoservice)
+  * [Starting the Infoservice](#starting-the-infoservice)
+- [VC3 Master](#vc3-master)
+  * [Installing the Master](#installing-the-master)
+  * [Launching the Master](#launching-the-master)
+- [VC3 Factory](#vc3-factory)
+  * [Prerequisites](#prerequisites-1)
+  * [Installing the Factory](#installing-the-factory)
+  * [Installing the Builder](#installing-the-builder)
+  * [Starting the Factory and Condor](#starting-the-factory-and-condor)
 
 # Adding keys
 
@@ -328,5 +328,13 @@ curl http://build.virtualclusters.org/repo/builder/201709061834/vc3-builder > /u
 ```
 
 ## Starting the Factory and Condor
+Once the Factory, Condor, and the builder have been installed on the factory host, you'll need to start the services:
+```
+service condor start
+service autopyfactory start
 ```
 
+As usual, check for any errors in the factory startup:
+```
+grep "ERROR" /var/log/autopyfactory/*.log || echo "Everything OK"
+```
