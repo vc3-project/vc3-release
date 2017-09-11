@@ -338,3 +338,35 @@ As usual, check for any errors in the factory startup:
 ```
 grep "ERROR" /var/log/autopyfactory/*.log || echo "Everything OK"
 ```
+
+------
+# VC3 Web Portal
+The VC3 web portal is a flask application that integrates the VC3 client APIs to give end-users a GUI for instantiating, running and terminating virtual clusters, registering resources and allocations, managing projects, and more.
+
+## Prerequisites
+For the host, you will need to install the development public keys and issue certs by the VC3 master. 
+
+All of the web portal's non-secret dependencies are included in a Docker container. However, you will need the Docker engine running, as well as a certificate issued by LetsEncrypt or another CA if you want the website to actually be visible over HTTPS without warnings.
+
+### Installing and running Docker
+You will first need to install EPEL and the Docker engine
+```
+yum install epel-release -y
+yum install docker -y
+```
+And start the service:
+```
+systemctl start docker 
+systemctl status docker
+```
+
+If it's working, you should see something like this:
+```
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Mon 2017-09-11 19:23:18 UTC; 2s ago
+     Docs: http://docs.docker.com
+ Main PID: 16879 (dockerd-current)
+ ```
+ 
+### Issueing a certificate with Let's Encrypt
