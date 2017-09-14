@@ -504,5 +504,5 @@ ExecStop=/usr/bin/docker stop vc3-portal
 ```
 
 
-Once placed in `/etc/systemd/system`, `systemctl start`, `systemctl stop`, and `systemctl restart` will do the appropriate things.
+Once placed in `/etc/systemd/system/website.service`, `systemctl start`, `systemctl stop`, and `systemctl restart` will do the appropriate things.
 
