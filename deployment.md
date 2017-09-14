@@ -489,23 +489,20 @@ As before:
 ## Running the container
 Once you have issued your certificates, you'll need to deploy the container and mount the secrets into it at run-time. We intentionally separate secrets such that everything else can be dumped into Github.
 
-We'll temporarily use tmux (see CORE-145) to run the container, so you'll need to install that as well:
+Use the following systemd file
 ```
-yum install tmux -y
-```
+[Unit]
+Description=VC3 Development Website
+After=syslog.target network.target
 
-More information can be found here (https://github.com/vc3-project/vc3-release/blob/master/vc3-website-deployment.md), but in short:
-```
-tmux
-cd /root/vc3-website-python; git pull origin; docker pull virtualclusters/vc3-portal:test; \
- docker run --rm --name vc3-portal -p 80:8080 -p 443:4443 \
- -v /root/secrets/$(hostname):/etc/letsencrypt/live/virtualclusters.org \
- -v /root/secrets/portal.conf:/srv/www/vc3-web-env/portal/portal.conf \
- -v /root/secrets/vc3:/srv/www/vc3-web-env/etc/certs \
- -v /root/vc3-website-python:/srv/www/vc3-web-env \ 
- virtualclusters/vc3-portal:test
+[Service]
+Type=simple
+ExecStartPre=/usr/local/bin/update_dev_code.sh
+ExecStart=/usr/bin/docker run --rm --name vc3-portal -p 80:8080 -p 443:4443 -v /root/vc3-website/secrets/www-dev.virtualclusters.org:/etc/letsencrypt/live/virtualclusters.org -v /root/vc3-website/secrets/portal.conf:/srv/www/vc3-web-env/portal/portal.conf -v /root/vc3-website/secrets/vc3:/srv/www/vc3-web-env/etc/certs -v /root/vc3-website-python:/srv/www/vc3-web-env virtualclusters/vc3-portal:latest
+ExecReload=/usr/bin/docker restart vc3-portal
+ExecStop=/usr/bin/docker stop vc3-portal
 ```
 
 
-
+Once placed in `/etc/systemd/system`, `systemctl start`, `systemctl stop`, and `systemctl restart` will do the appropriate things.
 
