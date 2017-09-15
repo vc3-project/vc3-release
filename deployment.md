@@ -349,6 +349,26 @@ As usual, check for any errors in the factory startup:
 grep "ERROR" /var/log/autopyfactory/*.log || echo "Everything OK"
 ```
 
+## Monitoring the pilots
+We use a graphite server provided by MWT2 to plot time series data. Create the monitoring script in `/usr/local/bin/monitor-pilots.sh`:
+```
+#!/bin/bash
+condor_q -nobatch -global -const 'Jobstatus == 1' -long | grep "MATCH_APF" | sort | uniq -c | sed 's/\"//g' |awk -v date=$(date +%s) -v hostname=$(hostname | tr '.' '_') '{ print "condor.factory."hostname".idle." $4,$1,date}' | nc -w 30 graphite.mwt2.org 2003
+condor_q -nobatch -global -const 'Jobstatus == 2' -long | grep "MATCH_APF" | sort | uniq -c | sed 's/\"//g' |awk -v date=$(date +%s) -v hostname=$(hostname | tr '.' '_') '{ print "condor.factory."hostname".running." $4,$1,date}' | nc -w 30 graphite.mwt2.org 2003
+```
+
+Make it executable, install `nc` if necessary, and test for any errors:
+```
+chmod +x /usr/local/bin/monitor-pilots.sh
+yum install nc -y
+/usr/local/bin/monitor-pilots.sh
+```
+
+If successful, there should be no output. Finally add it to root's crontab (`crontab -e` as root) with the following cron entry:
+```
+* * * * * /usr/local/bin/monitor-pilots.sh
+```
+
 ------
 # VC3 Web Portal
 The VC3 web portal is a flask application that integrates the VC3 client APIs to give end-users a GUI for instantiating, running and terminating virtual clusters, registering resources and allocations, managing projects, and more.
