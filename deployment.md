@@ -403,10 +403,11 @@ monitor.vc3.vc3clientconf = /etc/vc3/vc3-client.conf
 
 ## Installing the Builder
 
-The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory.
+The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory and make it executable.
 
 ```
 curl http://build.virtualclusters.org/repo/builder/201709061834/vc3-builder > /usr/local/libexec/vc3-builder
+chmod +x /usr/local/libexec/vc3-builder 
 ```
 
 ## Starting the Factory and Condor
