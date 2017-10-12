@@ -6,7 +6,7 @@
 gitdir=~/git
 destdir=~/
 
-pyprojects="sdcc-pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers vc3-factory-plugins pyopenssl cheroot cherrypy"
+pyprojects="pyopenssl cheroot cherrypy sdcc-pluginmanager credible vc3-info-service vc3-client vc3-master vc3-resource-tool vc3-wrappers vc3-factory-plugins "
 makeprojects="vc3-builder"
 
 f_copyconf() {

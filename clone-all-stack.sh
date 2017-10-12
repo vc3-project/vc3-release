@@ -18,6 +18,22 @@ vc3root="https://github.com/vc3-project"
 sdccroot="https://github.com/bnl-sdcc"
 jhoverroot="https://github.com/jhover"
 
+for p in $jhoverprojects  ; do
+    if [ -d "$p" ] ; then
+        echo "$gitdir/$p already exists. Pulling..."
+        cd $p
+        git pull
+        cd ..
+    else  
+        repo="${jhoverroot}/${p}.git"
+        echo $repo
+        git clone $repo
+    fi
+done
+
+
+
+
 for p in $sdccprojects  ; do
     if [ -d "$p" ] ; then
         echo "$gitdir/$p already exists. Pulling..."
@@ -56,16 +72,4 @@ else
     git clone $repo
 fi
 
-for p in $jhoverprojects  ; do
-    if [ -d "$p" ] ; then
-        echo "$gitdir/$p already exists. Pulling..."
-        cd $p
-        git pull
-        cd ..
-    else  
-        repo="${jhoverroot}/${p}.git"
-        echo $repo
-        git clone $repo
-    fi
-done
 
