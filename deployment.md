@@ -329,12 +329,85 @@ apfqueue.sleep = 60
 batchstatus.condor.sleep = 25
 ```
 
+Likewise, the main `autopyfactory.conf` needs to be adjusted:
+
+```
+# =================================================================================================================
+#
+# autopyfactory.conf Configuration file for main Factory component of AutoPyFactory.
+#
+# Documentation:
+#   https://twiki.grid.iu.edu/bin/view/Documentation/Release3/AutoPyFactory
+#   https://twiki.grid.iu.edu/bin/view/Documentation/Release3/AutoPyFactoryConfiguration#5_2_autopyfactory_conf
+#
+# =================================================================================================================
+
+# template for a configuration file
+[Factory]
+
+factoryAdminEmail = neo@matrix.net
+factoryId = MYSITE-hostname-sysadminname
+factorySMTPServer = mail.matrix.net
+factoryMinEmailRepeatSeconds = 43200
+factoryUser = autopyfactory
+enablequeues = True
+
+queueConf = file:///etc/autopyfactory/queues.conf
+queueDirConf = None
+proxyConf = /etc/autopyfactory/proxy.conf
+authmanager.enabled = True
+proxymanager.enabled = True
+proxymanager.sleep = 30
+authmanager.sleep = 30
+authConf = /etc/autopyfactory/auth.conf
+monitorConf = /etc/autopyfactory/monitor.conf
+mappingsConf = /etc/autopyfactory/mappings.conf
+
+cycles = 9999999
+cleanlogs.keepdays = 14
+
+factory.sleep=30
+wmsstatus.panda.sleep = 150
+wmsstatus.panda.maxage = 360
+wmsstatus.condor.sleep = 150
+wmsstatus.condor.maxage = 360
+batchstatus.condor.sleep = 150
+batchstatus.condor.maxage = 360
+
+baseLogDir = /home/autopyfactory/factory/logs
+baseLogDirUrl = http://myhost.matrix.net:25880
+
+logserver.enabled = True
+logserver.index = True
+logserver.allowrobots = False
+
+# Automatic (re)configuration
+config.reconfig = True
+config.reconfig.interval = 30
+config.queues.plugin = File, VC3
+config.auth.plugin = File, VC3
+
+config.queues.vc3.vc3clientconf = /etc/vc3/vc3-client.conf
+config.queues.vc3.tempfile = ~/queues.conf.tmp
+
+# For static central factory, use 'all' and will check all requests.
+config.queues.vc3.requestname = all
+config.auth.vc3.vc3clientconf = /etc/vc3/vc3-client.conf
+config.auth.vc3.tempfile = ~/auth.conf.tmp
+config.auth.vc3.requestname = all
+
+# For the factory-level monitor plugin VC3
+monitor = VC3
+monitor.vc3.vc3clientconf = /etc/vc3/vc3-client.conf
+```
+
 ## Installing the Builder
 
-The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory.
+The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory and make it executable.
 
 ```
 curl http://build.virtualclusters.org/repo/builder/201709061834/vc3-builder > /usr/local/libexec/vc3-builder
+chmod +x /usr/local/libexec/vc3-builder 
 ```
 
 ## Starting the Factory and Condor
