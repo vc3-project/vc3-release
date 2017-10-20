@@ -8,7 +8,7 @@ wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py -O get-pip.py
 python get-pip.py
 
 #   PROJECT LISTS, EDIT THESE
-vc3projects="credible vc3-info-service vc3-master vc3-resource-tool vc3-client vc3-builder vc3-wrappers"
+vc3projects="credible vc3-infoservice vc3-master vc3-resource-tool vc3-client vc3-builder vc3-wrappers"
 sdccprojects="sdcc-pluginmanager"
 
 vc3root="git+https://github.com/vc3-project"
