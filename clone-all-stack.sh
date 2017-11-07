@@ -5,8 +5,8 @@
 
 #   PROJECT LISTS, EDIT THESE
 sdccprojects="sdcc-pluginmanager"
-vc3projects="credible vc3-infoservice vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers vc3-factory-plugins"
-jhoverprojects="cheroot cherrypy" 
+vc3projects="cheroot credible vc3-infoservice vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers vc3-factory-plugins"
+jhoverprojects="" 
 
 # 
 #    EDITTING BELOW SHOULD NOT BE NEEDED

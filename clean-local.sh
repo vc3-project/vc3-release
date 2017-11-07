@@ -4,7 +4,7 @@
 #
 #
 #
-PYMODULES="autopyfactory cheroot credible pluginmanager CherryPy pyOpenSSL portend vc3 tempora"
+PYMODULES="autopyfactory cheroot cherrypy credible pluginmanager CherryPy pyOpenSSL portend vc3 tempora"
 PTHTMP=~/pthtmp
 DOTPTH=~/lib/python/easy-install.pth
 
