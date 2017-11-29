@@ -5,8 +5,7 @@
 
 #   PROJECT LISTS, EDIT THESE
 sdccprojects="sdcc-pluginmanager"
-vc3projects="cheroot credible vc3-infoservice vc3-master vc3-resource-tool vc3-client example-configurations vc3-builder vc3-wrappers vc3-factory-plugins"
-
+vc3projects="cheroot credible vc3-infoservice vc3-master vc3-resource-tool vc3-client vc3-playbooks example-configurations vc3-builder vc3-wrappers vc3-factory-plugins vc3-website-python vc3-deployment-infrastructure"
 
 # 
 #    EDITTING BELOW SHOULD NOT BE NEEDED
