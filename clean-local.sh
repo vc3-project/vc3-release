@@ -4,7 +4,7 @@
 #
 #
 #
-PYMODULES="autopyfactory cheroot cherrypy credible pluginmanager CherryPy pyOpenSSL portend vc3 tempora"
+PYMODULES="py-miracle miracle_acl autopyfactory cheroot cherrypy credible pluginmanager CherryPy pyOpenSSL portend vc3 tempora"
 PTHTMP=~/pthtmp
 DOTPTH=~/lib/python/easy-install.pth
 
@@ -20,3 +20,6 @@ done
 
 echo "removing $PTHTMP "
 rm -rf $PTHTMP
+
+echo "removing binaries..."
+rm ~/bin/vc3* ~/bin/credible ~/bin/easy_install*
