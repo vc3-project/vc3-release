@@ -175,6 +175,12 @@ The Master depends on the vc3-client and vc3-infoservice packages for the client
 yum install vc3-client vc3-infoservice vc3-master pluginmanager -y
 ```
 
+If using OpenStack for dynamic head node provisioning, you'll also need python-novaclient from the OpenStack repositories. 
+```
+yum install centos-release-openstack-ocata -y
+yum install python-novaclient -y
+```
+
 And configure `/etc/vc3/vc3-master.conf`:
 ```
 [DEFAULT]
