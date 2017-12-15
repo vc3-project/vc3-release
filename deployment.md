@@ -223,6 +223,18 @@ httpport=20333
 httpsport=20334
 ```
 
+## Installing Ansible and adding Playbooks
+To manage dynamic head nodes, we use Ansible to SSH to a head node and customize it for each VC. First we'll need to install Ansible from the EL Extras repo:
+```
+yum install ansible
+```
+
+And then pull down the playbooks (to be RPM-ized, see COR-164).
+```
+cd /etc/vc3
+git clone https://github.com/vc3-project/vc3-playbooks
+```
+
 ## Launching the Master 
 
 Once the Infoservce has been started, you can start the VC3 Master to process requests. Make sure that the `infohost=` is pointed to the correct hostname in `/etc/vc3/vc3/master.conf`.
