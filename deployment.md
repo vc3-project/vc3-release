@@ -12,6 +12,7 @@ VC3 Deployment Instructions
 - [VC3 Infoservice](#vc3-infoservice)
   * [Prerequisites](#prerequisites)
   * [Installing the Infoservice](#installing-the-infoservice)
+  * [Installing Ansible and adding Playbooks](#installing-ansible-and-adding-playbooks)
   * [Starting the Infoservice](#starting-the-infoservice)
 - [VC3 Master](#vc3-master)
   * [Installing the Master](#installing-the-master)
@@ -229,7 +230,7 @@ To manage dynamic head nodes, we use Ansible to SSH to a head node and customize
 yum install ansible
 ```
 
-And then pull down the playbooks (to be RPM-ized, see COR-164).
+And then pull down the playbooks (to be RPM-ized, see CORE-164).
 ```
 cd /etc/vc3
 git clone https://github.com/vc3-project/vc3-playbooks
