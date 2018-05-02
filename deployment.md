@@ -280,7 +280,7 @@ As with the master and infoservice, you'll need the VC3 repo installed and publi
 In addition to the factory itself, you'll need to install VC3-specific plugins, the infoservice and client for APIs, and the pluginmanager. 
 ```
 yum install epel-release -y 
-yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager -y
+yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager vc3-remote-manager paramiko -y
 ```
 
 We will also need the HTCondor software. Install the public key, repo, and condor package:
