@@ -49,9 +49,13 @@ The CentOS account should, by default, have `sudo` privileges.
 On all pieces of the static infrastructure, you will need to install the VC3 package repository. Add the following contents to `/etc/yum.repos.d/vc3.repo`:
 
 ```
+[vc3-x86_64]
+name=VC3 x86_64
+baseurl=http://build.virtualclusters.org/production/x86_64
+gpgcheck=0
 [vc3-noarch]
-name=VC3
-baseurl=http://build.virtualclusters.org/repo/noarch
+name=VC3 noarch
+baseurl=http://build.virtualclusters.org/production/noarch
 gpgcheck=0
 ```
 
