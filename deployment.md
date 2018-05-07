@@ -176,9 +176,9 @@ grep "ERROR" /var/log/vc3/*log || echo "Everything OK"
 # VC3 Master
 
 ## Installing the Master
-The Master depends on the vc3-client and vc3-infoservice packages for the client APIs. Install them along with the plugin manager:
+The Master depends on the vc3-client and vc3-infoservice packages for the client APIs. We also need ansible and the VC3 playbooks to configure nodes. Install them along with the plugin manager:
 ```
-yum install vc3-client vc3-infoservice vc3-master pluginmanager -y
+yum install vc3-client vc3-infoservice vc3-master pluginmanager ansible vc3-playbooks -y
 ```
 
 If using OpenStack for dynamic head node provisioning, you'll also need python-novaclient from the OpenStack repositories. 
@@ -227,18 +227,6 @@ keyfile=/etc/pki/tls/private/hostkey.pem
 infohost=info-test.virtualclusters.org
 httpport=20333
 httpsport=20334
-```
-
-## Installing Ansible and adding Playbooks
-To manage dynamic head nodes, we use Ansible to SSH to a head node and customize it for each VC. First we'll need to install Ansible from the EL Extras repo:
-```
-yum install ansible
-```
-
-And then pull down the playbooks (to be RPM-ized, see CORE-164).
-```
-cd /etc/vc3
-git clone https://github.com/vc3-project/vc3-playbooks
 ```
 
 ## Launching the Master 
