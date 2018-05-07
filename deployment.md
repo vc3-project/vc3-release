@@ -150,6 +150,11 @@ On the *Master* host, you will need to issue certificates for the Infoservice. C
 ```
 
 ## Starting the Infoservice
+Due to a bug (CORE-261), we need to create `/var/log/vc3`
+```
+mkdir -p /var/log/vc3
+```
+
 For now, we'll use the sysv-init style startup scripts:
 ```
 /etc/init.d/vc3-infoservice.init start
