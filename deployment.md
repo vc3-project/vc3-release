@@ -12,7 +12,6 @@ VC3 Deployment Instructions
 - [VC3 Infoservice](#vc3-infoservice)
   * [Prerequisites](#prerequisites)
   * [Installing the Infoservice](#installing-the-infoservice)
-  * [Installing Ansible and adding Playbooks](#installing-ansible-and-adding-playbooks)
   * [Starting the Infoservice](#starting-the-infoservice)
 - [VC3 Master](#vc3-master)
   * [Installing the Master](#installing-the-master)
@@ -20,7 +19,6 @@ VC3 Deployment Instructions
 - [VC3 Factory](#vc3-factory)
   * [Prerequisites](#prerequisites-1)
   * [Installing the Factory](#installing-the-factory)
-  * [Installing the Builder](#installing-the-builder)
   * [Starting the Factory and Condor](#starting-the-factory-and-condor)
 - [VC3 Web Portal](#vc3-web-portal)
   * [Prerequisites](#prerequisites-2)
@@ -343,7 +341,7 @@ As with the master and infoservice, you'll need the VC3 repo installed and publi
 In addition to the factory itself, you'll need to install VC3-specific plugins, the infoservice and client for APIs, and the pluginmanager. 
 ```
 yum install epel-release -y 
-yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager vc3-remote-manager paramiko -y
+yum install autopyfactory vc3-factory-plugins vc3-client vc3-infoservice pluginmanager vc3-remote-manager vc3-builder paramiko -y
 ```
 
 We will also need the HTCondor software. Install the public key, repo, and condor package:
@@ -481,15 +479,6 @@ config.auth.vc3.requestname = all
 # For the factory-level monitor plugin VC3
 monitor = VC3
 monitor.vc3.vc3clientconf = /etc/vc3/vc3-client.conf
-```
-
-## Installing the Builder
-
-The builder is a self-contained perl script. Tagged releases are stored in http://build.virtualclusters.org/repo/builder/. You will need to copy this to the /usr/local/libexec directory on the Factory and make it executable.
-
-```
-curl http://build.virtualclusters.org/repo/builder/201709061834/vc3-builder > /usr/local/libexec/vc3-builder
-chmod +x /usr/local/libexec/vc3-builder 
 ```
 
 ## Starting the Factory and Condor
