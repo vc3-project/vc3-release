@@ -114,7 +114,7 @@ Assuming you have already configured the VC3 repos, install the following:
 ```
 yum install epel-release -y
 yum install vc3-infoservice pluginmanager python-pip openssl -y
-pip install pyOpenSSL cherrypy
+pip install pyOpenSSL CherryPy==11.0.0
 ```
 
 And edit config at `/etc/vc3/vc3-infoservice.conf`:
