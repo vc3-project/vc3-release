@@ -294,7 +294,7 @@ ansible_playbook     = login-dynamic.yaml
 ansible_debug_file   = /var/log/vc3/ansible.log
 ```
 
-Note the *username* and *password* you will need to fill in.
+Note the *username* and *password* you will need to fill in. You'll also need to put the private key for root on the head nodes here under `/etc/vc3/keys`.
 
 
 ## Launching the Master 
