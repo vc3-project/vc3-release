@@ -305,6 +305,8 @@ It may be necessary to create the vc3 log directory (_see CORE-140_) and change 
 ```
 mkdir -p /var/log/vc3
 chown vc3: /var/log/vc3
+mkdir -p /var/credible/ssh
+chown vc3: /var/credible/ssh
 ```
 
 Finally, start the service:
@@ -348,7 +350,7 @@ We will also need the HTCondor software. Install the public key, repo, and condo
 ```
 rpm --import http://research.cs.wisc.edu/htcondor/yum/RPM-GPG-KEY-HTCondor
 curl http://research.cs.wisc.edu/htcondor/yum/repo.d/htcondor-stable-rhel7.repo > /etc/yum.repos.d/htcondor-stable-rhel7.repo
-yum install condor
+yum install condor -y
 ```
 
 As before, we will need certificates issued to the Factory host:
