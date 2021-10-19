@@ -656,6 +656,7 @@ As before:
 (master)# credible -c /etc/credible/credible.conf certchain
 (www)# vi /root/secrets/vc3/vc3chain.pem
 ```
+Note: For dev, use `/root/vc3-website/secrets/vc3`
 
 ## Running the container
 Once you have issued your certificates, you'll need to deploy the container and mount the secrets into it at run-time. We intentionally separate secrets such that everything else can be dumped into Github.
