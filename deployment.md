@@ -103,6 +103,12 @@ credible -c /etc/credible/credible.conf hostcert master-test.virtualclusters.org
 credible -c /etc/credible/credible.conf hostkey master-test.virtualclusters.org > /etc/pki/tls/private/hostkey.pem
 credible -c /etc/credible/credible.conf certchain > /etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
 ```
+Note: If you are renewing certificates, delete old ones from: `/var/credible/ssca/defaultca`
+
+```
+# cd /var/credible/ssca/defaultca
+# find . -name "master-dev*" -exec rm {} \;
+```
 
 ----
 
