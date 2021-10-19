@@ -103,7 +103,7 @@ credible -c /etc/credible/credible.conf hostcert master-test.virtualclusters.org
 credible -c /etc/credible/credible.conf hostkey master-test.virtualclusters.org > /etc/pki/tls/private/hostkey.pem
 credible -c /etc/credible/credible.conf certchain > /etc/pki/ca-trust/extracted/pem/vc3-chain.cert.pem
 ```
-Note: If you are renewing certificates, backup old ssca
+Note: If you are renewing certificates, backup old ssca first, before running credible:
 
 ```
 # mv /var/credible/ssca /var/credible/ssca-backup
