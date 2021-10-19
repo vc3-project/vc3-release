@@ -614,6 +614,20 @@ IMPORTANT NOTES:
 
 Take note of the fullchain location, e.g. `/etc/letsencrypt/live/www-test.virtualclusters.org/fullchain.pem`. You will need this location for the Container.
 
+Note: If you are renewing your web certificates, stop nginx and the web server first.
+
+```
+systemctl stop ngninx
+systemctl stop webssite
+```
+After you are done runnig certbot, restart services:
+```
+systemctl start ngninx
+systemctl start webssite
+```
+
+
+
 ## Installing the web portal
 First, install git
 ```
